@@ -5,7 +5,7 @@ public class Main {
         return input;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.println("Введи арифметическое действие");
         String num = in.nextLine();
@@ -17,7 +17,7 @@ public class Main {
         int answer = 0;
         int count = 0;
         if (example.length < 3) {
-            System.out.println("throws Exception //т.к. строка не является математической операцией");
+            throw new Exception("т.к. строка не является математической операцией");
         }
         for (int i = 0; number.length != i; i++) {
             if (example[0].equals(number[i]))
@@ -51,25 +51,20 @@ public class Main {
                 answer = (n1 / n2);
                 break;
             default:
-                System.out.println("throws Exception //т.к. строка не является математической операцией");
+                throw new Exception("throws Exception //т.к. строка не является математической операцией");
         }
         if (count == 0 && example.length < 4) {
             System.out.println(answer);
         } else if (count == 2 && example.length < 4 && answer > 0) {
             System.out.println(testEnum.values()[answer - 1]);
         } else if (count == 1 && example.length < 4) {
-            System.out.println("throws Exception //т.к. используются одновременно разные системы счисления");
+            throw new Exception("throws Exception //т.к. используются одновременно разные системы счисления");
         } else if (answer < 1) {
-            System.out.println("throws Exception //т.к. в римской системе нет отрицательных чисел");
+            throw new Exception("throws Exception //т.к. в римской системе нет отрицательных чисел");
         } else {
-            System.out.println("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+            throw new Exception("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
         }
     }
 }
-
-
-
-
-
 
 
