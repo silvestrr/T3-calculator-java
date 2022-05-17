@@ -37,26 +37,32 @@ public class Main {
             n2 = test.getNumber();
             count += 1;
         }
-        switch (example[1]) {
+        ;
+        end(count, example, send(example, n1, n2));
+        if (count == 1 && example.length < 4) {
+            throw new Exception("т.к. используются одновременно разные системы счисления");
+        }
+    }
+
+    public static int send(String[] ex, int x1, int x2) throws Exception {
+        int answer;
+        switch (ex[1]) {
             case "+":
-                answer = (n1 + n2);
+                answer = x1 + x2;
                 break;
             case "-":
-                answer = (n1 - n2);
+                answer = x1 - x2;
                 break;
             case "*":
-                answer = (n1 * n2);
+                answer = x1 * x2;
                 break;
             case "/":
-                answer = (n1 / n2);
+                answer = x1 / x2;
                 break;
             default:
                 throw new Exception("т.к. строка не является математической операцией");
         }
-        end(count, example, answer);
-        if (count == 1 && example.length < 4) {
-            throw new Exception("т.к. используются одновременно разные системы счисления");
-        }
+        return answer;
     }
 
     public static void end(int cou, String[] exa, int an) throws Exception {
