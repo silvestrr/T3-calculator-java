@@ -1,11 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    public static String calc(String input) {
-        return input;
-    }
-
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] input) throws Exception {
         Scanner in = new Scanner(System.in);
         System.out.println("Введи арифметическое действие");
         String num = in.nextLine();
@@ -14,11 +10,15 @@ public class Main {
         String[] number = arabic.split(",");
         int n1 = 0;
         int n2 = 0;
-        int answer = 0;
         int count = 0;
+        int answer = 0;
         if (example.length < 3) {
             throw new Exception("т.к. строка не является математической операцией");
         }
+        if (example.length > 3) {
+            throw new Exception("т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+        }
+
         for (int i = 0; number.length != i; i++) {
             if (example[0].equals(number[i]))
                 n1 = i + 1;
@@ -51,20 +51,21 @@ public class Main {
                 answer = (n1 / n2);
                 break;
             default:
-                throw new Exception("throws Exception //т.к. строка не является математической операцией");
+                throw new Exception("т.к. строка не является математической операцией");
         }
-        if (count == 0 && example.length < 4) {
-            System.out.println(answer);
-        } else if (count == 2 && example.length < 4 && answer > 0) {
-            System.out.println(testEnum.values()[answer - 1]);
-        } else if (count == 1 && example.length < 4) {
-            throw new Exception("throws Exception //т.к. используются одновременно разные системы счисления");
-        } else if (answer < 1) {
-            throw new Exception("throws Exception //т.к. в римской системе нет отрицательных чисел");
-        } else {
-            throw new Exception("throws Exception //т.к. формат математической операции не удовлетворяет заданию - два операнда и один оператор (+, -, /, *)");
+        end(count, example, answer);
+        if (count == 1 && example.length < 4) {
+            throw new Exception("т.к. используются одновременно разные системы счисления");
+        }
+    }
+
+    public static void end(int cou, String[] exa, int an) throws Exception {
+        if (cou == 0 && exa.length < 4) {
+            System.out.println(an);
+        } else if (cou == 2 && exa.length < 4 && an > 0) {
+            System.out.println(testEnum.values()[an - 1]);
+        } else if (an < 1) {
+            throw new Exception("т.к. в римской системе нет отрицательных чисел");
         }
     }
 }
-
-
